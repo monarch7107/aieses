@@ -1,0 +1,32 @@
+# fly.io — `fly launch --copy-config` then `fly volumes create aieses_data --size 1` and `fly secrets set JWT_SECRET=...`
+app = "aieses"
+primary_region = "sin"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  NODE_ENV = "production"
+  PORT = "4000"
+  DEMO_MODE = "true"
+  TRUST_PROXY = "true"
+  COOKIE_SECURE = "true"
+  DATABASE_PATH = "/data/aieses.sqlite"
+
+[[mounts]]
+  source = "aieses_data"
+  destination = "/data"
+
+[http_service]
+  internal_port = 4000
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
+
+[[http_service.checks]]
+  interval = "30s"
+  timeout = "5s"
+  grace_period = "20s"
+  method = "GET"
+  path = "/api/health"
