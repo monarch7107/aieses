@@ -1,0 +1,25 @@
+{
+  "name": "aieses",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AIESES — AI-Enabled Smart Education System (SIH 26207, AICTE, Smart Education)",
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "dev": "concurrently -k -n server,client -c blue,green \"npm run dev -w server\" \"npm run dev -w client\"",
+    "build": "npm run build -w client && npm run build -w server",
+    "start": "node --disable-warning=ExperimentalWarning server/dist/index.js",
+    "seed": "npm run seed -w server",
+    "test": "npm run test -w server",
+    "typecheck": "npm run typecheck -w server && npm run typecheck -w client",
+    "smoke": "node scripts/smoke.mjs"
+  },
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}

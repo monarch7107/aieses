@@ -1,0 +1,36 @@
+# dependencies
+node_modules/
+
+# builds
+client/dist/
+server/dist/
+dist/
+build/
+coverage/
+
+# database / runtime data (seeded automatically on boot)
+data/
+*.sqlite
+*.sqlite-journal
+*.db
+*.db-journal
+
+# environment / secrets
+.env
+.env.*
+!.env.example
+
+# logs & caches
+*.log
+npm-debug.log*
+.vite/
+.cache/
+.tsbuildinfo
+*.tsbuildinfo
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
